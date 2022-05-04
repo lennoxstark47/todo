@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4443;
 
 // Setting view engine as ejs
 app.set('view engine', 'ejs');
@@ -19,9 +19,9 @@ mongoose.connect(process.env.MONGO_URI)
         .catch(err => {
           console.log(err)
         })
-app.get('/', (req,res) => {
-  res.send("Hello World")
-})
+// app.get('/', (req,res) => {
+//   res.send("Hello World")
+// })
 
 app.listen(port, (err) => {
   if(err){

@@ -41,16 +41,16 @@ module.exports.create = function(req, res){
 
 //deleting tasks/single task
 module.exports.delete = (req,res) => {
-  if (req.body.id === undefined){
+  if (req.body.id == undefined){
     console.log("No task selected");
-    window.alert("You have to select a task")
+    alert("You have to select a task")
     return res.redirect('back')
   }
-  else if(typeof(req.body.id) === String){
+  else if(typeof(req.body.id) == 'string'){
     Task.findByIdAndDelete(req.body.id)
         .then(task => {
           console.log(task);
-          window.alert('Task Deleted Succesfully');
+          alert('Task Deleted Succesfully');
           return res.redirect('back');
         })
         .catch(err => {
