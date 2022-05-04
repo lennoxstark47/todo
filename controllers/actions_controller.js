@@ -38,3 +38,35 @@ module.exports.create = function(req, res){
             console.log(err)
           })
 }
+
+//deleting tasks/single task
+module.exports.delete = (req,res) => {
+  if (req.body.id === undefined){
+    console.log("No task selected");
+    window.alert("You have to select a task")
+    return res.redirect('back')
+  }
+  else if(typeof(req.body.id) === String){
+    Task.findByIdAndDelete(req.body.id)
+        .then(task => {
+          console.log(task);
+          window.alert('Task Deleted Succesfully');
+          return res.redirect('back');
+        })
+        .catch(err => {
+          console.log(err)
+        })
+  }
+  else {
+    for(let i of req.body.id){
+      Task.findByIdAndDelete(i)
+          .then(data => {
+            console.log(data);
+            res.redirect('back')
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    }
+  }
+}
